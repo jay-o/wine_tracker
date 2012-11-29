@@ -47,7 +47,7 @@ describe User do
 		it { should_not be_valid }
 	end
 	
-	# tests lengtha
+	# tests lengths
 	describe "when first_name is too long" do
 		before { @user.first_name = "a" * 51 }
 		it { should_not be_valid }
@@ -87,6 +87,16 @@ describe User do
 			end      
 		end
 	end	
+
+	# Verifies email is saved into db downcased
+	describe "email address with mixed case" do
+		let(:mixed_case_email) { "Foo@ExAMPle.CoM" }
+		it "should be saved as all lower-case" do
+			@user.email = mixed_case_email
+			@user.save
+			@user.reload.email.should == mixed_case_email.downcase
+		end
+	end
 
 	# Tests Email Uniqueness
 	describe "when email address is already taken" do

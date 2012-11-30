@@ -11,7 +11,7 @@ describe "Static pages" do
 
 	describe "Home page" do
 		before 				{ visit root_path }
-		let(:heading) 		{ 'Sample App' }
+		let(:heading) 		{ 'Wine Tracker' }
 		let(:page_title) 	{ '' }
 		
 		it_should_behave_like "all static pages"
@@ -62,7 +62,7 @@ describe "Static pages" do
 	    #click_link "Sign up"
 	    #page.should have_selector 'h1', text: 'Sign Up'
 	    
-	    click_link "Wine Tracker Beta"
-	    page.should have_selector 'h1', text: 'Welcome'
+	    click_link "logo"
+	    page.should have_selector 'h1', text: 'Wine Tracker Beta'
 	  end
 end

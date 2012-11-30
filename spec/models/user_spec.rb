@@ -26,7 +26,8 @@ describe User do
 	it { should respond_to(:password_digest) }
 	it { should respond_to(:password) }
   	it { should respond_to(:password_confirmation) }
-  	it { should respond_to(:authenticate) }
+	it { should respond_to(:remember_token) }
+	it { should respond_to(:authenticate) } 
 	
 	# Checks to make sure user is 'saved' so far before we continue
 	it { should be_valid }
@@ -86,6 +87,8 @@ describe User do
 				@user.should be_valid
 			end      
 		end
+
+		
 	end	
 
 	# Verifies email is saved into db downcased
@@ -126,4 +129,11 @@ describe User do
 		before { @user.password_confirmation = nil }
 		it { should_not be_valid }
 	end	
+
+
+	# A test for a valid (nonblank) remember token. 
+	describe "remember token" do
+		before { @user.save }
+		its(:remember_token) { should_not be_blank }
+	end
 end

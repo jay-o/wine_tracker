@@ -2,12 +2,15 @@
 #
 # Table name: users
 #
-#  id         :integer          not null, primary key
-#  first_name :string(255)
-#  last_name  :string(255)
-#  email      :string(255)
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id              :integer          not null, primary key
+#  first_name      :string(255)
+#  last_name       :string(255)
+#  email           :string(255)
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  password_digest :string(255)
+#  remember_token  :string(255)
+#  admin           :boolean
 #
 
 require 'spec_helper'
@@ -15,7 +18,12 @@ require 'spec_helper'
 describe User do
 
 	before do
-		@user = User.new(first_name: "Example", last_name: "User", email: "user@example.com", password: "foobar", password_confirmation: "foobar")
+		@user = User.new(	first_name: "Example", 
+							last_name: "User", 
+							email: "user@example.com", 
+							password: "foobar", 
+							password_confirmation: "foobar"
+							)
 	end
 
 	subject { @user }
@@ -41,9 +49,6 @@ describe User do
 
 		it { should be_admin }
 	end
-	
-	# Checks to make sure user is 'saved' so far before we continue
-	it { should be_valid }
 	
 	# tests presence of
 	describe "when first_name is not present" do

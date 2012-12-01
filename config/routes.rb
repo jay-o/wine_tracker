@@ -1,5 +1,6 @@
 WineTracker::Application.routes.draw do
   resources :users
+  resources :wines
   resources :sessions, only: [:new, :create, :destroy]
 
   match '/signup',  to: 'users#new'

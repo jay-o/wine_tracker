@@ -13,11 +13,11 @@ describe "User pages" do
 			visit users_path
 		end
 
-		it { should have_selector('title', text: 'All users') }
-		it { should have_selector('h1',    text: 'All users') }
+		it { should have_selector('title', text: 'All Users') }
+		it { should have_selector('h1',    text: 'All Users') }
 
 
-		describe "pagination" do
+		describe "user pagination" do
 			before(:all) { 30.times { FactoryGirl.create(:user) } }
 			after(:all)  { User.delete_all }
 

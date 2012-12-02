@@ -33,9 +33,6 @@ describe "Wine Pages" do
 		it { should have_selector('title', 	text: wine.name) }
 		it { should have_selector('h1', 	text: wine.name) }
 		it { should have_selector('p', 		integer: wine.year) }
-		it { should have_selector('p', 		integer: wine.maker_id) }
-		it { should have_selector('p', 		integer: wine.varietal_id) }
-		it { should have_selector('p', 		integer: wine.region_id) }
 		it { should have_selector('p',	 	text: wine.description) }
 
 

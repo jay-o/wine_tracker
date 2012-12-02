@@ -37,15 +37,9 @@ def make_wines
 	10.times do |n|
 		name 		= Faker::Company.name
 		description = Faker::Company.catch_phrase
-		maker_id 	= (1..30).to_a.shuffle.first
-		region_id 	= (1..30).to_a.shuffle.first
-		varietal_id = (1..30).to_a.shuffle.first
 		year	 	= (1950..2012).to_a.shuffle.first
 		Wine.create!(	name: 			name,
 						description: 	description, 		
-						maker_id: 		maker_id,
-						region_id: 		region_id,
-						varietal_id: 	varietal_id,
 						year: 			year
 						)
 	end

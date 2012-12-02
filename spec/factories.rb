@@ -13,9 +13,6 @@ FactoryGirl.define do
 
 	factory :wine do
 		name 			"Wine" 
-		maker_id		"1" 
-		region_id 		"1"
-		varietal_id		"1"
 		year 			"2000"
 	end
 end

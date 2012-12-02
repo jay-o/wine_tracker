@@ -24,5 +24,21 @@ describe "Wine Pages" do
 			end
 		end
 	end
+
+
+	describe "details page" do
+		let(:wine) { FactoryGirl.create(:wine) }
+		before { visit wine_path(wine) }
+
+		it { should have_selector('title', 	text: wine.name) }
+		it { should have_selector('h1', 	text: wine.name) }
+		it { should have_selector('p', 		integer: wine.year) }
+		it { should have_selector('p', 		integer: wine.maker_id) }
+		it { should have_selector('p', 		integer: wine.varietal_id) }
+		it { should have_selector('p', 		integer: wine.region_id) }
+		it { should have_selector('p',	 	text: wine.description) }
+
+
+	end
 	
 end

@@ -33,7 +33,8 @@ describe "Authentication" do
 			it { should have_selector('title', text: user.first_name) }
 
 			it { should have_link('Users',    href: users_path) }
-			it { should have_link('Profile', href: user_path(user)) }
+			it { should have_link('Wines',    href: wines_path) }
+			it { should have_link('Profile',  href: user_path(user)) }
 			it { should have_link('Settings', href: edit_user_path(user)) }
 			it { should have_link('Sign out', href: signout_path) }
 			
@@ -41,8 +42,8 @@ describe "Authentication" do
 		end
 	end
 
-	describe "authorization" do
 
+	describe "authorization" do
 		describe "for non-signed-in users" do
 			let(:user) { FactoryGirl.create(:user) }
 
@@ -74,7 +75,6 @@ describe "Authentication" do
 				end
 
 				describe "after signing in" do
-
 					it "should render the desired protected page" do
 						page.should have_selector('title', text: 'Edit user')
 					end

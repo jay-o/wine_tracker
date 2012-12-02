@@ -62,8 +62,9 @@ describe "User pages" do
 		let(:user) { FactoryGirl.create(:user) }
 		before { visit user_path(user) }
 
-		it { should have_selector('h1',    text: user.first_name) }
-		it { should have_selector('title', text: user.first_name) }
+		it { should have_selector('title', text: "#{user.first_name} #{user.last_name}'s Profile") }
+		it { should have_selector('h1',    text: "#{user.first_name} #{user.last_name}") }
+		it { should have_selector('h2',    text: "email: #{user.email}") }
 	end
 
 	describe "signup" do

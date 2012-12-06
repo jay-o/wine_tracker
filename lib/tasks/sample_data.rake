@@ -3,6 +3,7 @@ namespace :db do
 		task populate: :environment do
 			make_users
 			make_wines
+			make_user_posts
 #			make_user_wine_relationship
 	end
 end
@@ -42,5 +43,14 @@ def make_wines
 						description: 	description, 		
 						year: 			year
 						)
+	end
+end
+
+# Add fake user posts
+def make_user_posts
+	users = User.all(limit: 10)
+	15.times do |n|
+		content = Faker::Lorem.sentence(5)
+		users.each { |u| u.posts.create!(content: content) }
 	end
 end

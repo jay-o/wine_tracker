@@ -15,4 +15,9 @@ FactoryGirl.define do
 		name 			"Wine" 
 		year 			"2000"
 	end
+
+	factory :post do
+		content "Lorem ipsum"
+		user
+	end
 end

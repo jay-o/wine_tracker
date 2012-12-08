@@ -156,10 +156,10 @@ describe "User pages" do
   		it { should have_selector('title', 	text: user.first_name) }
   		it { should have_selector('h1', 	text: user.first_name) }
   		
-  		#describe "posts" do
-  		#	it { should have_content(p1.content) }
-  		#	it { should have_content(p2.content) }
-  		#	it { should have_content(user.posts.count) }
-  		#end
+  		describe "posts" do
+  			xit { should have_content(p1.content) }
+  			xit { should have_content(p2.content) }
+  			xit { should have_content(user.posts.count) }
+  		end
   	end
 end

@@ -11,11 +11,28 @@ describe "Static pages" do
 
 	describe "Home page" do
 		before 				{ visit root_path }
-		let(:heading) 		{ 'Wine Tracker' }
-		let(:page_title) 	{ '' }
+		let(:heading) 		{ 'Wine Tracker Beta' }
+		let(:page_title) 	{ '' } #sending in title as empty which the helper catches for
 		
 		it_should_behave_like "all static pages"
 		it { should_not have_selector 'title', text: '| Home' }
+
+		describe "for signed in users" do
+			let(:user) { FactoryGirl.create(:user) }
+			before do
+				FactoryGirl.create(:post, user: user, content: 'Lorem ipsum')
+				FactoryGirl.create(:post, user: user, content: 'Doh doh')
+				sign_in user
+				visit root_path
+			end
+
+			it "should render the user's feed" do
+				user.feed.each do |item|
+					page.should have_selector("li##{item.id}", text: item.content)
+				end
+			end
+		end
+
 	end
 
 	describe "Help page" do
@@ -64,5 +81,5 @@ describe "Static pages" do
 	    
 	    click_link "logo"
 	    page.should have_selector 'h1', text: 'Wine Tracker Beta'
-	  end
+	end
 end

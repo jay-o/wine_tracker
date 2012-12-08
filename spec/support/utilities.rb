@@ -1,4 +1,12 @@
 include ApplicationHelper
+	def full_title(page_title)
+		base_title = "Wine Tracker Beta"
+		if page_title.empty?
+			base_title
+		else
+			"#{base_title} | #{page_title}"
+		end
+	end
 
 	def sign_in(user)
 		visit signin_path

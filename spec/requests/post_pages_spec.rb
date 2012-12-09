@@ -36,7 +36,7 @@ describe "Post Pages" do
 			before { visit root_path }
 
 			it "should delete a post" do
-				expect { click_link "delete"}.to change(Post.count).by(-1)
+				expect { click_link "delete"}.to change(Post, :count).by(-1)
 			end
 		end
 	end

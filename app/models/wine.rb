@@ -11,7 +11,10 @@
 #
 
 class Wine < ActiveRecord::Base
-  attr_accessible :name, :description, :maker_id, :region_id, :varietal_id, :year
+  attr_accessible :name, :description, :year
+
+  has_many :user_wines
+  has_many :users, through: :user_wines
 
   validates :name, presence: true, length: { maximum: 100 }
   validates :year, presence: true, length: { is: 4 }

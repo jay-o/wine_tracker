@@ -1,10 +1,10 @@
 namespace :db do
 	desc "Fill database with sample data"
-		task populate: :environment do
-			make_users
-			make_wines
-			make_user_posts
-#			make_user_wine_relationship
+	task populate: :environment do
+		make_users
+		make_wines
+		make_user_posts
+		make_user_wine_relationship
 	end
 end
 
@@ -18,7 +18,7 @@ def make_users
 							password_confirmation: "foobar")
 	admin.toggle!(:admin)
 	
-	50.times do |n|
+	25.times do |n|
 		first_name  = Faker::Name.first_name
 		last_name  	= Faker::Name.last_name
 		email 		= "example-#{n+1}@test.com"
@@ -35,7 +35,7 @@ end
 
 # Add fake wines
 def make_wines
-	10.times do |n|
+	50.times do |n|
 		name 		= Faker::Company.name
 		description = Faker::Company.catch_phrase
 		year	 	= (1950..2012).to_a.shuffle.first
@@ -53,4 +53,20 @@ def make_user_posts
 		content = Faker::Lorem.sentence(5)
 		users.each { |u| u.posts.create!(content: content) }
 	end
+end
+
+
+# Add fake make_user_wine_relationship
+def make_user_wine_relationship
+	user = User.all
+	user.each do |u|
+		x = (1..10).to_a.shuffle.first
+		w = (1..10).to_a.shuffle
+		n = 0
+		x.times do
+			n += 1
+			u.user_wines.create!( wine_id: w[n] )
+		end
+	end
+
 end

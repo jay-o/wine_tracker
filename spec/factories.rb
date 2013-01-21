@@ -1,8 +1,8 @@
 FactoryGirl.define do
 	factory :user do
 		sequence(:first_name)  	{ |n| "First" }
-		sequence(:last_name)  	{ |n| "Last #{n}" }
-  		sequence(:email) 		{ |n| "person_#{n}@example.com"}  
+		sequence(:last_name)  	{ |n| "Last #{n+1}" }
+  		sequence(:email) 		{ |n| "person_#{n+1}@example.com"}  
 		password 				"foobar"
 		password_confirmation 	"foobar"
 
@@ -18,6 +18,6 @@ FactoryGirl.define do
 
 	factory :post do
 		content "Lorem ipsum"
-		user
+		user	"1"
 	end
 end

@@ -1,10 +1,11 @@
 <% provide(:title, 'All Wines') %>
 <h1>All Wines</h1>
 
-<%= will_paginate %>
 
 <ul class="users">
-	<%= render @wines %>
+	<% @wines.each do |w| %>
+		<li><%= link_to w.name, w %></li>
+	<% end %>
 </ul>
 
 <%= will_paginate %>

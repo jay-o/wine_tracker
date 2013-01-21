@@ -3,8 +3,10 @@
 <h1><%= "#{@user.first_name} #{@user.last_name}" %></h1>
 <h2>email: <%= @user.email %></h2>
 
+<h3><%= link_to "View My Cellar", wines_user_path %></h3>
+
+<h3>Updates: <%= @user.posts.count %></h3>
 <% if @user.posts.any? %>
-	<h3>Posts: (<%= @user.posts.count %>)</h3>
 	<ol class="posts">
 		<%= render @posts %>
 	</ol>

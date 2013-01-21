@@ -4,3 +4,20 @@
 <h1><%= @wine.name %></h1>
 <p>Year: <%= @wine.year %></p>
 <p>Description: <%= @wine.description %></p>
+
+<% if signed_in? %>	
+	<h4>Do you have this?</h4>
+	<% if @user.user_wines.find_by_wine_id(@wine) %>
+		<p>You have this already</p>
+		<%= form_for(current_user.user_wines.find_by_wine_id(@wine), html: { method: :delete}) do |f| %>
+			<div><%= f.hidden_field :wine_id %></div>
+			<%= f.submit "Remove from Cellar", class: "btn" %>
+		<% end %>
+	<% else %>
+		<p>You don't have this wine yet</p>
+		<%= form_for(current_user.user_wines.build(wine_id: @wine.id)) do |f| %>
+			<div><%= f.hidden_field :wine_id %></div>
+			<%= f.submit "Add to Cellar", class: "btn btn-large btn-primary" %>
+		<% end %>
+	<% end %>
+<% end %>

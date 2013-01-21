@@ -1,0 +1,7 @@
+<h1><%= @user.first_name %>'s Wine List</h1>
+
+<ol>
+	<% @user.wines.each do |w| %>
+		<li><%= w.name %> | <%= w.year %></li>
+	<% end %>
+</ol>
